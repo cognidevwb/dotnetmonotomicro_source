@@ -1,0 +1,944 @@
+{
+  "nodes": [
+    {
+      "label": "Class",
+      "name": "CatalogController",
+      "file": "Catalog/CatalogController.cs",
+      "line": 5
+    },
+    {
+      "label": "Class",
+      "name": "CatalogService",
+      "file": "Catalog/CatalogService.cs",
+      "line": 6
+    },
+    {
+      "label": "Class",
+      "name": "Category",
+      "file": "Catalog/Category.cs",
+      "line": 3
+    },
+    {
+      "label": "Class",
+      "name": "Customer",
+      "file": "Customers/Customer.cs",
+      "line": 3
+    },
+    {
+      "label": "Class",
+      "name": "CustomerService",
+      "file": "Customers/CustomerService.cs",
+      "line": 6
+    },
+    {
+      "label": "Class",
+      "name": "CustomersController",
+      "file": "Customers/CustomersController.cs",
+      "line": 5
+    },
+    {
+      "label": "Class",
+      "name": "InventoryService",
+      "file": "Inventory/InventoryService.cs",
+      "line": 6
+    },
+    {
+      "label": "Class",
+      "name": "LineDto",
+      "file": "Orders/OrdersController.cs",
+      "line": 10
+    },
+    {
+      "label": "Class",
+      "name": "Order",
+      "file": "Orders/Order.cs",
+      "line": 3
+    },
+    {
+      "label": "Class",
+      "name": "OrderLine",
+      "file": "Orders/OrderLine.cs",
+      "line": 3
+    },
+    {
+      "label": "Class",
+      "name": "OrderService",
+      "file": "Orders/OrderService.cs",
+      "line": 11
+    },
+    {
+      "label": "Class",
+      "name": "OrdersController",
+      "file": "Orders/OrdersController.cs",
+      "line": 5
+    },
+    {
+      "label": "Class",
+      "name": "Payment",
+      "file": "Payments/Payment.cs",
+      "line": 3
+    },
+    {
+      "label": "Class",
+      "name": "PaymentService",
+      "file": "Payments/PaymentService.cs",
+      "line": 5
+    },
+    {
+      "label": "Class",
+      "name": "PlaceOrderRequest",
+      "file": "Orders/OrdersController.cs",
+      "line": 9
+    },
+    {
+      "label": "Class",
+      "name": "Product",
+      "file": "Catalog/Product.cs",
+      "line": 3
+    },
+    {
+      "label": "Class",
+      "name": "ShopDbContext",
+      "file": "Data/ShopDbContext.cs",
+      "line": 10
+    },
+    {
+      "label": "Class",
+      "name": "StockItem",
+      "file": "Inventory/StockItem.cs",
+      "line": 3
+    },
+    {
+      "label": "Field",
+      "name": "Active",
+      "parent_class": "Customer",
+      "return_type": "bool",
+      "file": "Customers/Customer.cs",
+      "line": 7
+    },
+    {
+      "label": "Field",
+      "name": "Amount",
+      "parent_class": "Payment",
+      "return_type": "decimal",
+      "file": "Payments/Payment.cs",
+      "line": 7
+    },
+    {
+      "label": "Field",
+      "name": "Categories",
+      "parent_class": "ShopDbContext",
+      "return_type": "DbSet<Category>",
+      "file": "Data/ShopDbContext.cs",
+      "line": 13
+    },
+    {
+      "label": "Field",
+      "name": "Category",
+      "parent_class": "Product",
+      "return_type": "Category?",
+      "file": "Catalog/Product.cs",
+      "line": 9
+    },
+    {
+      "label": "Field",
+      "name": "CategoryId",
+      "parent_class": "Product",
+      "return_type": "int",
+      "file": "Catalog/Product.cs",
+      "line": 8
+    },
+    {
+      "label": "Field",
+      "name": "CustomerId",
+      "parent_class": "Order",
+      "return_type": "int",
+      "file": "Orders/Order.cs",
+      "line": 6
+    },
+    {
+      "label": "Field",
+      "name": "Customers",
+      "parent_class": "ShopDbContext",
+      "return_type": "DbSet<Customer>",
+      "file": "Data/ShopDbContext.cs",
+      "line": 14
+    },
+    {
+      "label": "Field",
+      "name": "Email",
+      "parent_class": "Customer",
+      "return_type": "string",
+      "file": "Customers/Customer.cs",
+      "line": 6
+    },
+    {
+      "label": "Field",
+      "name": "Id",
+      "parent_class": "Category",
+      "return_type": "int",
+      "file": "Catalog/Category.cs",
+      "line": 5
+    },
+    {
+      "label": "Field",
+      "name": "Id",
+      "parent_class": "Product",
+      "return_type": "int",
+      "file": "Catalog/Product.cs",
+      "line": 5
+    },
+    {
+      "label": "Field",
+      "name": "Id",
+      "parent_class": "Customer",
+      "return_type": "int",
+      "file": "Customers/Customer.cs",
+      "line": 5
+    },
+    {
+      "label": "Field",
+      "name": "Id",
+      "parent_class": "StockItem",
+      "return_type": "int",
+      "file": "Inventory/StockItem.cs",
+      "line": 5
+    },
+    {
+      "label": "Field",
+      "name": "Id",
+      "parent_class": "Order",
+      "return_type": "int",
+      "file": "Orders/Order.cs",
+      "line": 5
+    },
+    {
+      "label": "Field",
+      "name": "Id",
+      "parent_class": "OrderLine",
+      "return_type": "int",
+      "file": "Orders/OrderLine.cs",
+      "line": 5
+    },
+    {
+      "label": "Field",
+      "name": "Id",
+      "parent_class": "Payment",
+      "return_type": "int",
+      "file": "Payments/Payment.cs",
+      "line": 5
+    },
+    {
+      "label": "Field",
+      "name": "Lines",
+      "parent_class": "Order",
+      "return_type": "List<OrderLine>",
+      "file": "Orders/Order.cs",
+      "line": 9
+    },
+    {
+      "label": "Field",
+      "name": "Name",
+      "parent_class": "Category",
+      "return_type": "string",
+      "file": "Catalog/Category.cs",
+      "line": 6
+    },
+    {
+      "label": "Field",
+      "name": "Name",
+      "parent_class": "Product",
+      "return_type": "string",
+      "file": "Catalog/Product.cs",
+      "line": 6
+    },
+    {
+      "label": "Field",
+      "name": "OrderId",
+      "parent_class": "OrderLine",
+      "return_type": "int",
+      "file": "Orders/OrderLine.cs",
+      "line": 6
+    },
+    {
+      "label": "Field",
+      "name": "OrderId",
+      "parent_class": "Payment",
+      "return_type": "int",
+      "file": "Payments/Payment.cs",
+      "line": 6
+    },
+    {
+      "label": "Field",
+      "name": "OrderLines",
+      "parent_class": "ShopDbContext",
+      "return_type": "DbSet<OrderLine>",
+      "file": "Data/ShopDbContext.cs",
+      "line": 18
+    },
+    {
+      "label": "Field",
+      "name": "Orders",
+      "parent_class": "ShopDbContext",
+      "return_type": "DbSet<Order>",
+      "file": "Data/ShopDbContext.cs",
+      "line": 17
+    },
+    {
+      "label": "Field",
+      "name": "Payments",
+      "parent_class": "ShopDbContext",
+      "return_type": "DbSet<Payment>",
+      "file": "Data/ShopDbContext.cs",
+      "line": 16
+    },
+    {
+      "label": "Field",
+      "name": "Price",
+      "parent_class": "Product",
+      "return_type": "decimal",
+      "file": "Catalog/Product.cs",
+      "line": 7
+    },
+    {
+      "label": "Field",
+      "name": "ProductId",
+      "parent_class": "StockItem",
+      "return_type": "int",
+      "file": "Inventory/StockItem.cs",
+      "line": 6
+    },
+    {
+      "label": "Field",
+      "name": "ProductId",
+      "parent_class": "OrderLine",
+      "return_type": "int",
+      "file": "Orders/OrderLine.cs",
+      "line": 7
+    },
+    {
+      "label": "Field",
+      "name": "Products",
+      "parent_class": "Category",
+      "return_type": "List<Product>",
+      "file": "Catalog/Category.cs",
+      "line": 7
+    },
+    {
+      "label": "Field",
+      "name": "Products",
+      "parent_class": "ShopDbContext",
+      "return_type": "DbSet<Product>",
+      "file": "Data/ShopDbContext.cs",
+      "line": 12
+    },
+    {
+      "label": "Field",
+      "name": "Quantity",
+      "parent_class": "StockItem",
+      "return_type": "int",
+      "file": "Inventory/StockItem.cs",
+      "line": 7
+    },
+    {
+      "label": "Field",
+      "name": "Quantity",
+      "parent_class": "OrderLine",
+      "return_type": "int",
+      "file": "Orders/OrderLine.cs",
+      "line": 8
+    },
+    {
+      "label": "Field",
+      "name": "Status",
+      "parent_class": "Order",
+      "return_type": "string",
+      "file": "Orders/Order.cs",
+      "line": 7
+    },
+    {
+      "label": "Field",
+      "name": "Status",
+      "parent_class": "Payment",
+      "return_type": "string",
+      "file": "Payments/Payment.cs",
+      "line": 8
+    },
+    {
+      "label": "Field",
+      "name": "StockItems",
+      "parent_class": "ShopDbContext",
+      "return_type": "DbSet<StockItem>",
+      "file": "Data/ShopDbContext.cs",
+      "line": 15
+    },
+    {
+      "label": "Field",
+      "name": "Total",
+      "parent_class": "Order",
+      "return_type": "decimal",
+      "file": "Orders/Order.cs",
+      "line": 8
+    },
+    {
+      "label": "Field",
+      "name": "UnitPrice",
+      "parent_class": "OrderLine",
+      "return_type": "decimal",
+      "file": "Orders/OrderLine.cs",
+      "line": 9
+    },
+    {
+      "label": "Method",
+      "name": "Charge",
+      "parent_class": "PaymentService",
+      "return_type": "Payment",
+      "file": "Payments/PaymentService.cs",
+      "line": 7
+    },
+    {
+      "label": "Method",
+      "name": "Get",
+      "parent_class": "CatalogController",
+      "return_type": "Task<IActionResult>",
+      "file": "Catalog/CatalogController.cs",
+      "line": 9
+    },
+    {
+      "label": "Method",
+      "name": "Get",
+      "parent_class": "CustomerService",
+      "return_type": "Task<Customer?>",
+      "file": "Customers/CustomerService.cs",
+      "line": 8
+    },
+    {
+      "label": "Method",
+      "name": "Get",
+      "parent_class": "CustomersController",
+      "return_type": "Task<IActionResult>",
+      "file": "Customers/CustomersController.cs",
+      "line": 9
+    },
+    {
+      "label": "Method",
+      "name": "GetProduct",
+      "parent_class": "CatalogService",
+      "return_type": "Task<Product?>",
+      "file": "Catalog/CatalogService.cs",
+      "line": 8
+    },
+    {
+      "label": "Method",
+      "name": "IsActive",
+      "parent_class": "CustomerService",
+      "return_type": "Task<bool>",
+      "file": "Customers/CustomerService.cs",
+      "line": 11
+    },
+    {
+      "label": "Method",
+      "name": "Place",
+      "parent_class": "OrdersController",
+      "return_type": "Task<IActionResult>",
+      "file": "Orders/OrdersController.cs",
+      "line": 12
+    },
+    {
+      "label": "Method",
+      "name": "PlaceOrder",
+      "parent_class": "OrderService",
+      "return_type": "Task<Order>",
+      "file": "Orders/OrderService.cs",
+      "line": 18
+    },
+    {
+      "label": "Method",
+      "name": "PriceOf",
+      "parent_class": "CatalogService",
+      "return_type": "Task<decimal>",
+      "file": "Catalog/CatalogService.cs",
+      "line": 11
+    },
+    {
+      "label": "Method",
+      "name": "Reserve",
+      "parent_class": "InventoryService",
+      "return_type": "Task<bool>",
+      "file": "Inventory/InventoryService.cs",
+      "line": 8
+    },
+    {
+      "label": "Route",
+      "name": "/Place",
+      "return_type": "POST",
+      "file": "Orders/OrdersController.cs",
+      "line": 12
+    },
+    {
+      "label": "Route",
+      "name": "products/{id:int}",
+      "return_type": "GET",
+      "file": "Catalog/CatalogController.cs",
+      "line": 9
+    },
+    {
+      "label": "Route",
+      "name": "{id:int}",
+      "return_type": "GET",
+      "file": "Customers/CustomersController.cs",
+      "line": 9
+    }
+  ],
+  "edges": [
+    {
+      "type": "CALLS",
+      "from": "CatalogController.Get",
+      "to": "CatalogService.GetProduct",
+      "callee": "GetProduct",
+      "file": "Catalog/CatalogController.cs",
+      "line": 12,
+      "method": "CatalogController.Get"
+    },
+    {
+      "type": "CALLS",
+      "from": "CatalogService.PriceOf",
+      "to": "CatalogService.GetProduct",
+      "callee": "GetProduct",
+      "file": "Catalog/CatalogService.cs",
+      "line": 12,
+      "method": "CatalogService.PriceOf"
+    },
+    {
+      "type": "CALLS",
+      "from": "CustomerService.IsActive",
+      "to": "CustomerService.Get",
+      "callee": "Get",
+      "file": "Customers/CustomerService.cs",
+      "line": 11,
+      "method": "CustomerService.IsActive"
+    },
+    {
+      "type": "CALLS",
+      "from": "CustomersController.Get",
+      "to": "CustomersController.Get",
+      "callee": "Get",
+      "file": "Customers/CustomersController.cs",
+      "line": 12,
+      "method": "CustomersController.Get"
+    },
+    {
+      "type": "CALLS",
+      "from": "OrderService.PlaceOrder",
+      "to": "CatalogService.PriceOf",
+      "callee": "PriceOf",
+      "file": "Orders/OrderService.cs",
+      "line": 29,
+      "method": "OrderService.PlaceOrder"
+    },
+    {
+      "type": "CALLS",
+      "from": "OrderService.PlaceOrder",
+      "to": "CustomerService.IsActive",
+      "callee": "IsActive",
+      "file": "Orders/OrderService.cs",
+      "line": 20,
+      "method": "OrderService.PlaceOrder"
+    },
+    {
+      "type": "CALLS",
+      "from": "OrderService.PlaceOrder",
+      "to": "InventoryService.Reserve",
+      "callee": "Reserve",
+      "file": "Orders/OrderService.cs",
+      "line": 27,
+      "method": "OrderService.PlaceOrder"
+    },
+    {
+      "type": "CALLS",
+      "from": "OrderService.PlaceOrder",
+      "to": "PaymentService.Charge",
+      "callee": "Charge",
+      "file": "Orders/OrderService.cs",
+      "line": 34,
+      "method": "OrderService.PlaceOrder"
+    },
+    {
+      "type": "CALLS",
+      "from": "OrdersController.Place",
+      "to": "OrderService.PlaceOrder",
+      "callee": "PlaceOrder",
+      "file": "Orders/OrdersController.cs",
+      "line": 15,
+      "method": "OrdersController.Place"
+    },
+    {
+      "type": "DEFINES",
+      "from": "CatalogController",
+      "to": "CatalogController.Get",
+      "file": "Catalog/CatalogController.cs",
+      "line": 9
+    },
+    {
+      "type": "DEFINES",
+      "from": "CatalogService",
+      "to": "CatalogService.GetProduct",
+      "file": "Catalog/CatalogService.cs",
+      "line": 8
+    },
+    {
+      "type": "DEFINES",
+      "from": "CatalogService",
+      "to": "CatalogService.PriceOf",
+      "file": "Catalog/CatalogService.cs",
+      "line": 11
+    },
+    {
+      "type": "DEFINES",
+      "from": "Category",
+      "to": "Category.Id",
+      "file": "Catalog/Category.cs",
+      "line": 5
+    },
+    {
+      "type": "DEFINES",
+      "from": "Category",
+      "to": "Category.Name",
+      "file": "Catalog/Category.cs",
+      "line": 6
+    },
+    {
+      "type": "DEFINES",
+      "from": "Category",
+      "to": "Category.Products",
+      "file": "Catalog/Category.cs",
+      "line": 7
+    },
+    {
+      "type": "DEFINES",
+      "from": "Customer",
+      "to": "Customer.Active",
+      "file": "Customers/Customer.cs",
+      "line": 7
+    },
+    {
+      "type": "DEFINES",
+      "from": "Customer",
+      "to": "Customer.Email",
+      "file": "Customers/Customer.cs",
+      "line": 6
+    },
+    {
+      "type": "DEFINES",
+      "from": "Customer",
+      "to": "Customer.Id",
+      "file": "Customers/Customer.cs",
+      "line": 5
+    },
+    {
+      "type": "DEFINES",
+      "from": "CustomerService",
+      "to": "CustomerService.Get",
+      "file": "Customers/CustomerService.cs",
+      "line": 8
+    },
+    {
+      "type": "DEFINES",
+      "from": "CustomerService",
+      "to": "CustomerService.IsActive",
+      "file": "Customers/CustomerService.cs",
+      "line": 11
+    },
+    {
+      "type": "DEFINES",
+      "from": "CustomersController",
+      "to": "CustomersController.Get",
+      "file": "Customers/CustomersController.cs",
+      "line": 9
+    },
+    {
+      "type": "DEFINES",
+      "from": "InventoryService",
+      "to": "InventoryService.Reserve",
+      "file": "Inventory/InventoryService.cs",
+      "line": 8
+    },
+    {
+      "type": "DEFINES",
+      "from": "Order",
+      "to": "Order.CustomerId",
+      "file": "Orders/Order.cs",
+      "line": 6
+    },
+    {
+      "type": "DEFINES",
+      "from": "Order",
+      "to": "Order.Id",
+      "file": "Orders/Order.cs",
+      "line": 5
+    },
+    {
+      "type": "DEFINES",
+      "from": "Order",
+      "to": "Order.Lines",
+      "file": "Orders/Order.cs",
+      "line": 9
+    },
+    {
+      "type": "DEFINES",
+      "from": "Order",
+      "to": "Order.Status",
+      "file": "Orders/Order.cs",
+      "line": 7
+    },
+    {
+      "type": "DEFINES",
+      "from": "Order",
+      "to": "Order.Total",
+      "file": "Orders/Order.cs",
+      "line": 8
+    },
+    {
+      "type": "DEFINES",
+      "from": "OrderLine",
+      "to": "OrderLine.Id",
+      "file": "Orders/OrderLine.cs",
+      "line": 5
+    },
+    {
+      "type": "DEFINES",
+      "from": "OrderLine",
+      "to": "OrderLine.OrderId",
+      "file": "Orders/OrderLine.cs",
+      "line": 6
+    },
+    {
+      "type": "DEFINES",
+      "from": "OrderLine",
+      "to": "OrderLine.ProductId",
+      "file": "Orders/OrderLine.cs",
+      "line": 7
+    },
+    {
+      "type": "DEFINES",
+      "from": "OrderLine",
+      "to": "OrderLine.Quantity",
+      "file": "Orders/OrderLine.cs",
+      "line": 8
+    },
+    {
+      "type": "DEFINES",
+      "from": "OrderLine",
+      "to": "OrderLine.UnitPrice",
+      "file": "Orders/OrderLine.cs",
+      "line": 9
+    },
+    {
+      "type": "DEFINES",
+      "from": "OrderService",
+      "to": "OrderService.PlaceOrder",
+      "file": "Orders/OrderService.cs",
+      "line": 18
+    },
+    {
+      "type": "DEFINES",
+      "from": "OrdersController",
+      "to": "OrdersController.Place",
+      "file": "Orders/OrdersController.cs",
+      "line": 12
+    },
+    {
+      "type": "DEFINES",
+      "from": "Payment",
+      "to": "Payment.Amount",
+      "file": "Payments/Payment.cs",
+      "line": 7
+    },
+    {
+      "type": "DEFINES",
+      "from": "Payment",
+      "to": "Payment.Id",
+      "file": "Payments/Payment.cs",
+      "line": 5
+    },
+    {
+      "type": "DEFINES",
+      "from": "Payment",
+      "to": "Payment.OrderId",
+      "file": "Payments/Payment.cs",
+      "line": 6
+    },
+    {
+      "type": "DEFINES",
+      "from": "Payment",
+      "to": "Payment.Status",
+      "file": "Payments/Payment.cs",
+      "line": 8
+    },
+    {
+      "type": "DEFINES",
+      "from": "PaymentService",
+      "to": "PaymentService.Charge",
+      "file": "Payments/PaymentService.cs",
+      "line": 7
+    },
+    {
+      "type": "DEFINES",
+      "from": "Product",
+      "to": "Product.Category",
+      "file": "Catalog/Product.cs",
+      "line": 9
+    },
+    {
+      "type": "DEFINES",
+      "from": "Product",
+      "to": "Product.CategoryId",
+      "file": "Catalog/Product.cs",
+      "line": 8
+    },
+    {
+      "type": "DEFINES",
+      "from": "Product",
+      "to": "Product.Id",
+      "file": "Catalog/Product.cs",
+      "line": 5
+    },
+    {
+      "type": "DEFINES",
+      "from": "Product",
+      "to": "Product.Name",
+      "file": "Catalog/Product.cs",
+      "line": 6
+    },
+    {
+      "type": "DEFINES",
+      "from": "Product",
+      "to": "Product.Price",
+      "file": "Catalog/Product.cs",
+      "line": 7
+    },
+    {
+      "type": "DEFINES",
+      "from": "ShopDbContext",
+      "to": "ShopDbContext.Categories",
+      "file": "Data/ShopDbContext.cs",
+      "line": 13
+    },
+    {
+      "type": "DEFINES",
+      "from": "ShopDbContext",
+      "to": "ShopDbContext.Customers",
+      "file": "Data/ShopDbContext.cs",
+      "line": 14
+    },
+    {
+      "type": "DEFINES",
+      "from": "ShopDbContext",
+      "to": "ShopDbContext.OrderLines",
+      "file": "Data/ShopDbContext.cs",
+      "line": 18
+    },
+    {
+      "type": "DEFINES",
+      "from": "ShopDbContext",
+      "to": "ShopDbContext.Orders",
+      "file": "Data/ShopDbContext.cs",
+      "line": 17
+    },
+    {
+      "type": "DEFINES",
+      "from": "ShopDbContext",
+      "to": "ShopDbContext.Payments",
+      "file": "Data/ShopDbContext.cs",
+      "line": 16
+    },
+    {
+      "type": "DEFINES",
+      "from": "ShopDbContext",
+      "to": "ShopDbContext.Products",
+      "file": "Data/ShopDbContext.cs",
+      "line": 12
+    },
+    {
+      "type": "DEFINES",
+      "from": "ShopDbContext",
+      "to": "ShopDbContext.StockItems",
+      "file": "Data/ShopDbContext.cs",
+      "line": 15
+    },
+    {
+      "type": "DEFINES",
+      "from": "StockItem",
+      "to": "StockItem.Id",
+      "file": "Inventory/StockItem.cs",
+      "line": 5
+    },
+    {
+      "type": "DEFINES",
+      "from": "StockItem",
+      "to": "StockItem.ProductId",
+      "file": "Inventory/StockItem.cs",
+      "line": 6
+    },
+    {
+      "type": "DEFINES",
+      "from": "StockItem",
+      "to": "StockItem.Quantity",
+      "file": "Inventory/StockItem.cs",
+      "line": 7
+    },
+    {
+      "type": "HANDLES",
+      "from": "GET products/{id:int}",
+      "to": "CatalogController.Get",
+      "file": "Catalog/CatalogController.cs",
+      "line": 9
+    },
+    {
+      "type": "HANDLES",
+      "from": "GET {id:int}",
+      "to": "CustomersController.Get",
+      "file": "Customers/CustomersController.cs",
+      "line": 9
+    },
+    {
+      "type": "HANDLES",
+      "from": "POST /Place",
+      "to": "OrdersController.Place",
+      "file": "Orders/OrdersController.cs",
+      "line": 12
+    }
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "products/{id:int}",
+      "handler": "CatalogController.Get",
+      "file": "Catalog/CatalogController.cs",
+      "line": 9
+    },
+    {
+      "method": "GET",
+      "path": "{id:int}",
+      "handler": "CustomersController.Get",
+      "file": "Customers/CustomersController.cs",
+      "line": 9
+    },
+    {
+      "method": "POST",
+      "path": "/Place",
+      "handler": "OrdersController.Place",
+      "file": "Orders/OrdersController.cs",
+      "line": 12
+    }
+  ],
+  "facts": [
+    {
+      "kind": "framework",
+      "key": "dotnet",
+      "value": "net10.0",
+      "file": "ShopMonolith.csproj",
+      "line": 1
+    }
+  ]
+}

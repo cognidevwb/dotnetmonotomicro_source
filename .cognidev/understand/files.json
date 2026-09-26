@@ -1,0 +1,476 @@
+[
+  {
+    "loc": 9,
+    "path": "Catalog/CatalogController.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 5,
+        "name": "CatalogController"
+      },
+      {
+        "class": "CatalogController",
+        "kind": "method",
+        "line": 9,
+        "name": "Get"
+      }
+    ]
+  },
+  {
+    "loc": 11,
+    "path": "Catalog/CatalogService.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 6,
+        "name": "CatalogService"
+      },
+      {
+        "class": "CatalogService",
+        "kind": "method",
+        "line": 8,
+        "name": "GetProduct"
+      },
+      {
+        "class": "CatalogService",
+        "kind": "method",
+        "line": 11,
+        "name": "PriceOf"
+      }
+    ]
+  },
+  {
+    "loc": 7,
+    "path": "Catalog/Category.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 3,
+        "name": "Category"
+      },
+      {
+        "class": "Category",
+        "kind": "field",
+        "line": 5,
+        "name": "Id"
+      },
+      {
+        "class": "Category",
+        "kind": "field",
+        "line": 6,
+        "name": "Name"
+      },
+      {
+        "class": "Category",
+        "kind": "field",
+        "line": 7,
+        "name": "Products"
+      }
+    ]
+  },
+  {
+    "loc": 9,
+    "path": "Catalog/Product.cs",
+    "symbols": [
+      {
+        "class": "Product",
+        "kind": "field",
+        "line": 9,
+        "name": "Category"
+      },
+      {
+        "class": "Product",
+        "kind": "field",
+        "line": 8,
+        "name": "CategoryId"
+      },
+      {
+        "class": "Product",
+        "kind": "field",
+        "line": 5,
+        "name": "Id"
+      },
+      {
+        "class": "Product",
+        "kind": "field",
+        "line": 6,
+        "name": "Name"
+      },
+      {
+        "class": "Product",
+        "kind": "field",
+        "line": 7,
+        "name": "Price"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 3,
+        "name": "Product"
+      }
+    ]
+  },
+  {
+    "loc": 7,
+    "path": "Customers/Customer.cs",
+    "symbols": [
+      {
+        "class": "Customer",
+        "kind": "field",
+        "line": 7,
+        "name": "Active"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 3,
+        "name": "Customer"
+      },
+      {
+        "class": "Customer",
+        "kind": "field",
+        "line": 6,
+        "name": "Email"
+      },
+      {
+        "class": "Customer",
+        "kind": "field",
+        "line": 5,
+        "name": "Id"
+      }
+    ]
+  },
+  {
+    "loc": 11,
+    "path": "Customers/CustomerService.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 6,
+        "name": "CustomerService"
+      },
+      {
+        "class": "CustomerService",
+        "kind": "method",
+        "line": 8,
+        "name": "Get"
+      },
+      {
+        "class": "CustomerService",
+        "kind": "method",
+        "line": 11,
+        "name": "IsActive"
+      }
+    ]
+  },
+  {
+    "loc": 9,
+    "path": "Customers/CustomersController.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 5,
+        "name": "CustomersController"
+      },
+      {
+        "class": "CustomersController",
+        "kind": "method",
+        "line": 9,
+        "name": "Get"
+      }
+    ]
+  },
+  {
+    "loc": 18,
+    "path": "Data/ShopDbContext.cs",
+    "symbols": [
+      {
+        "class": "ShopDbContext",
+        "kind": "field",
+        "line": 13,
+        "name": "Categories"
+      },
+      {
+        "class": "ShopDbContext",
+        "kind": "field",
+        "line": 14,
+        "name": "Customers"
+      },
+      {
+        "class": "ShopDbContext",
+        "kind": "field",
+        "line": 18,
+        "name": "OrderLines"
+      },
+      {
+        "class": "ShopDbContext",
+        "kind": "field",
+        "line": 17,
+        "name": "Orders"
+      },
+      {
+        "class": "ShopDbContext",
+        "kind": "field",
+        "line": 16,
+        "name": "Payments"
+      },
+      {
+        "class": "ShopDbContext",
+        "kind": "field",
+        "line": 12,
+        "name": "Products"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 10,
+        "name": "ShopDbContext"
+      },
+      {
+        "class": "ShopDbContext",
+        "kind": "field",
+        "line": 15,
+        "name": "StockItems"
+      }
+    ]
+  },
+  {
+    "loc": 8,
+    "path": "Inventory/InventoryService.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 6,
+        "name": "InventoryService"
+      },
+      {
+        "class": "InventoryService",
+        "kind": "method",
+        "line": 8,
+        "name": "Reserve"
+      }
+    ]
+  },
+  {
+    "loc": 7,
+    "path": "Inventory/StockItem.cs",
+    "symbols": [
+      {
+        "class": "StockItem",
+        "kind": "field",
+        "line": 5,
+        "name": "Id"
+      },
+      {
+        "class": "StockItem",
+        "kind": "field",
+        "line": 6,
+        "name": "ProductId"
+      },
+      {
+        "class": "StockItem",
+        "kind": "field",
+        "line": 7,
+        "name": "Quantity"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 3,
+        "name": "StockItem"
+      }
+    ]
+  },
+  {
+    "loc": 9,
+    "path": "Orders/Order.cs",
+    "symbols": [
+      {
+        "class": "Order",
+        "kind": "field",
+        "line": 6,
+        "name": "CustomerId"
+      },
+      {
+        "class": "Order",
+        "kind": "field",
+        "line": 5,
+        "name": "Id"
+      },
+      {
+        "class": "Order",
+        "kind": "field",
+        "line": 9,
+        "name": "Lines"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 3,
+        "name": "Order"
+      },
+      {
+        "class": "Order",
+        "kind": "field",
+        "line": 7,
+        "name": "Status"
+      },
+      {
+        "class": "Order",
+        "kind": "field",
+        "line": 8,
+        "name": "Total"
+      }
+    ]
+  },
+  {
+    "loc": 9,
+    "path": "Orders/OrderLine.cs",
+    "symbols": [
+      {
+        "class": "OrderLine",
+        "kind": "field",
+        "line": 5,
+        "name": "Id"
+      },
+      {
+        "class": "OrderLine",
+        "kind": "field",
+        "line": 6,
+        "name": "OrderId"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 3,
+        "name": "OrderLine"
+      },
+      {
+        "class": "OrderLine",
+        "kind": "field",
+        "line": 7,
+        "name": "ProductId"
+      },
+      {
+        "class": "OrderLine",
+        "kind": "field",
+        "line": 8,
+        "name": "Quantity"
+      },
+      {
+        "class": "OrderLine",
+        "kind": "field",
+        "line": 9,
+        "name": "UnitPrice"
+      }
+    ]
+  },
+  {
+    "loc": 18,
+    "path": "Orders/OrderService.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 11,
+        "name": "OrderService"
+      },
+      {
+        "class": "OrderService",
+        "kind": "method",
+        "line": 18,
+        "name": "PlaceOrder"
+      }
+    ]
+  },
+  {
+    "loc": 12,
+    "path": "Orders/OrdersController.cs",
+    "symbols": [
+      {
+        "class": null,
+        "kind": "class",
+        "line": 10,
+        "name": "LineDto"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 5,
+        "name": "OrdersController"
+      },
+      {
+        "class": "OrdersController",
+        "kind": "method",
+        "line": 12,
+        "name": "Place"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 9,
+        "name": "PlaceOrderRequest"
+      }
+    ]
+  },
+  {
+    "loc": 8,
+    "path": "Payments/Payment.cs",
+    "symbols": [
+      {
+        "class": "Payment",
+        "kind": "field",
+        "line": 7,
+        "name": "Amount"
+      },
+      {
+        "class": "Payment",
+        "kind": "field",
+        "line": 5,
+        "name": "Id"
+      },
+      {
+        "class": "Payment",
+        "kind": "field",
+        "line": 6,
+        "name": "OrderId"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 3,
+        "name": "Payment"
+      },
+      {
+        "class": "Payment",
+        "kind": "field",
+        "line": 8,
+        "name": "Status"
+      }
+    ]
+  },
+  {
+    "loc": 7,
+    "path": "Payments/PaymentService.cs",
+    "symbols": [
+      {
+        "class": "PaymentService",
+        "kind": "method",
+        "line": 7,
+        "name": "Charge"
+      },
+      {
+        "class": null,
+        "kind": "class",
+        "line": 5,
+        "name": "PaymentService"
+      }
+    ]
+  }
+]
