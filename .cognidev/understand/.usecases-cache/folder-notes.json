@@ -1,0 +1,117 @@
+{
+  "Orders": {
+    "hash": "aec34a129098f1a8",
+    "purpose": "Manages the lifecycle of customer orders, from creation through line items and status tracking.",
+    "useCases": [
+      {
+        "title": "Place an order",
+        "evidence": "OrdersController.Place, OrderService.PlaceOrder, PlaceOrderRequest"
+      },
+      {
+        "title": "View order details and status",
+        "evidence": "Order.Status, Order.Total, OrdersController"
+      },
+      {
+        "title": "Add multiple line items to an order",
+        "evidence": "OrderLine, LineDto, Order.Lines"
+      }
+    ],
+    "files": [
+      "Orders/Order.cs",
+      "Orders/OrderLine.cs",
+      "Orders/OrderService.cs",
+      "Orders/OrdersController.cs"
+    ]
+  },
+  "Catalog": {
+    "hash": "fd07f4d77dd63632",
+    "purpose": "Exposes the product catalog and category structure for browsing and pricing lookups.",
+    "useCases": [
+      {
+        "title": "Browse products in the catalog",
+        "evidence": "CatalogController.Get, CatalogService, Product"
+      },
+      {
+        "title": "View a specific product's details",
+        "evidence": "CatalogController.GetProduct"
+      },
+      {
+        "title": "Check the price of a product",
+        "evidence": "CatalogService.PriceOf, Product.Price"
+      },
+      {
+        "title": "Browse products by category",
+        "evidence": "Category, CategoryId"
+      }
+    ],
+    "files": [
+      "Catalog/CatalogController.cs",
+      "Catalog/CatalogService.cs",
+      "Catalog/Category.cs",
+      "Catalog/Product.cs"
+    ]
+  },
+  "Customers": {
+    "hash": "dcff04cbf9c996bd",
+    "purpose": "Maintains customer account records and their active/inactive status.",
+    "useCases": [
+      {
+        "title": "Look up a customer account",
+        "evidence": "CustomersController.Get, CustomerService"
+      },
+      {
+        "title": "Manage whether a customer's account is active",
+        "evidence": "Customer.Active, Customer.IsActive"
+      }
+    ],
+    "files": [
+      "Customers/Customer.cs",
+      "Customers/CustomerService.cs",
+      "Customers/CustomersController.cs"
+    ]
+  },
+  "Data": {
+    "hash": "805cde7d78a079ae",
+    "purpose": "Shared database context wiring together the persistence for all shop entities.",
+    "useCases": [],
+    "files": [
+      "Data/ShopDbContext.cs"
+    ]
+  },
+  "Payments": {
+    "hash": "e24157e68265da60",
+    "purpose": "Handles charging payments against orders and tracking payment status.",
+    "useCases": [
+      {
+        "title": "Pay for an order",
+        "evidence": "PaymentService.Charge, Payment.OrderId"
+      },
+      {
+        "title": "Track the status of a payment",
+        "evidence": "Payment.Status, Payment.Amount"
+      }
+    ],
+    "files": [
+      "Payments/Payment.cs",
+      "Payments/PaymentService.cs"
+    ]
+  },
+  "Inventory": {
+    "hash": "99fe55df9186fcd8",
+    "purpose": "Tracks stock levels per product and reserves inventory for orders.",
+    "useCases": [
+      {
+        "title": "Reserve stock for a product when ordering",
+        "evidence": "InventoryService.Reserve, StockItem.Quantity"
+      },
+      {
+        "title": "Check available stock for a product",
+        "evidence": "StockItem.ProductId, StockItem.Quantity"
+      }
+    ],
+    "files": [
+      "Inventory/InventoryService.cs",
+      "Inventory/StockItem.cs"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "domain": "E-commerce order management backend (retail/shop platform)",
+  "summary": "This application is the backend for a small online shop that sells products out of one shared database. Shoppers browse a catalog of products, organized into categories, see current prices, and place orders that record priced line items; each order can then be paid for, creating a payment charge linked back to that specific order. Behind the scenes, placing an order looks up catalog pricing, reserves the needed stock, and checks that the customer's account is in good standing before the order and its line items are recorded.\n\nThe primary users are shoppers/customers who browse the catalog, place orders, and pay for them. Staff can look up a customer's account record via a dedicated lookup, though the evidence only shows a read capability here, not an account-management action (no method to change a customer's active status was found, only a read-only IsActive check used internally).\n\nStructurally the system is a thin backend organized around five business areas \u2014 Catalog (products and categories), Customers (account records and active status), Orders (order creation and line items), Inventory (stock levels and reservations), and Payments (charging) \u2014 all backed by one persistence layer (ShopDbContext). Given how few files exist in this reference implementation, only the core order-placement spine is confidently evidenced end-to-end; there is no evidence of order lookup/history, category-filtered browsing endpoints, payment-status lookup, or customer status management, so those were not included as separate use cases.",
+  "useCases": [
+    {
+      "id": "place-order",
+      "title": "Place an order",
+      "actor": "Customer",
+      "description": "A customer submits a request to buy one or more products; the system prices, validates, and reserves stock for the order before recording it.",
+      "steps": [
+        "Customer submits a place-order request listing the desired products and quantities",
+        "System looks up current pricing for each requested product from the catalog",
+        "System verifies the customer's account is active before proceeding",
+        "System reserves the requested stock for each product in inventory",
+        "Order and its line items are created and the order total is calculated",
+        "Order is stored with an initial status"
+      ],
+      "evidence": "OrdersController.Place, OrderService.PlaceOrder, PlaceOrderRequest, LineDto; CustomerService.IsActive, Customer.Active; InventoryService.Reserve, StockItem.Quantity/ProductId; CatalogService.PriceOf",
+      "files": [
+        "Orders/OrdersController.cs",
+        "Orders/OrderService.cs",
+        "Orders/Order.cs",
+        "Orders/OrderLine.cs",
+        "Inventory/InventoryService.cs",
+        "Inventory/StockItem.cs",
+        "Catalog/CatalogService.cs",
+        "Customers/CustomerService.cs"
+      ],
+      "folders": [
+        "Catalog",
+        "Customers",
+        "Inventory",
+        "Orders"
+      ]
+    },
+    {
+      "id": "browse-catalog",
+      "title": "Browse the product catalog",
+      "actor": "Shopper",
+      "description": "A shopper views the list of products available for purchase, organized into categories.",
+      "steps": [
+        "Shopper requests the list of products",
+        "System returns the available products from the catalog, including each product's category"
+      ],
+      "evidence": "CatalogController.Get, CatalogService, Product.Category/CategoryId, Category.Name/Products",
+      "files": [
+        "Catalog/CatalogController.cs",
+        "Catalog/CatalogService.cs",
+        "Catalog/Product.cs",
+        "Catalog/Category.cs"
+      ],
+      "folders": [
+        "Catalog"
+      ]
+    },
+    {
+      "id": "view-product-details",
+      "title": "View a product's details and price",
+      "actor": "Shopper",
+      "description": "A shopper looks up a specific product to see its details and current price before buying.",
+      "steps": [
+        "Shopper requests a product by its ID",
+        "System looks up the product and its price",
+        "Product details and price are returned"
+      ],
+      "evidence": "CatalogController.Get, CatalogService.GetProduct, CatalogService.PriceOf, Product.Price",
+      "files": [
+        "Catalog/CatalogController.cs",
+        "Catalog/CatalogService.cs",
+        "Catalog/Product.cs"
+      ],
+      "folders": [
+        "Catalog"
+      ]
+    },
+    {
+      "id": "lookup-customer",
+      "title": "Look up a customer account",
+      "actor": "Customer",
+      "description": "A customer's account record is retrieved, e.g. to view or verify account details.",
+      "steps": [
+        "A request is made for a customer by ID",
+        "System retrieves the matching customer record",
+        "Customer details are returned"
+      ],
+      "evidence": "CustomersController.Get, CustomerService.Get, Customer.Email/Active",
+      "files": [
+        "Customers/CustomersController.cs",
+        "Customers/CustomerService.cs",
+        "Customers/Customer.cs"
+      ],
+      "folders": [
+        "Customers"
+      ]
+    },
+    {
+      "id": "pay-for-order",
+      "title": "Pay for an order",
+      "actor": "Customer",
+      "description": "A customer pays for a placed order, charging a payment that is linked back to that order and recorded with an amount and status.",
+      "steps": [
+        "Customer initiates payment for a specific order",
+        "System charges the payment amount",
+        "A payment record is created, linked to the order via its order ID, with amount and status recorded"
+      ],
+      "evidence": "PaymentService.Charge, Payment.OrderId, Payment.Amount, Payment.Status",
+      "files": [
+        "Payments/PaymentService.cs",
+        "Payments/Payment.cs",
+        "Orders/Order.cs"
+      ],
+      "folders": [
+        "Orders",
+        "Payments"
+      ]
+    }
+  ]
+}

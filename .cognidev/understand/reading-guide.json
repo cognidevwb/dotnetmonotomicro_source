@@ -1,0 +1,117 @@
+{
+  "v": 1,
+  "title": "Reading Guide: .NET E-Commerce Monolith",
+  "overview": "This monolith demonstrates a classic modular monolith with clear bounded contexts but tight coupling through a shared database. Understanding the code requires following the data flow from controllers through services to the god DbContext.",
+  "guidedTour": [
+    {
+      "stop": 1,
+      "title": "Start Here: The Entry Point",
+      "file": "Program.cs",
+      "description": "ASP.NET Core minimal hosting setup. Registers services, configures the DbContext with an in-memory database, and sets up the HTTP pipeline. This is where all dependencies are wired together.",
+      "keyLines": [
+        "builder.Services.AddDbContext<ShopDbContext>() - The god context",
+        "builder.Services.AddTransient<CatalogService>() - Service registrations",
+        "app.MapControllers() - Routing setup"
+      ],
+      "next": "Look at Data/ShopDbContext.cs to see what this DbContext owns"
+    },
+    {
+      "stop": 2,
+      "title": "The God Context Problem",
+      "file": "Data/ShopDbContext.cs",
+      "description": "This single DbContext owns ALL entities across ALL domains - Products, Categories, Customers, StockItems, Payments, Orders. This is the primary coupling point preventing independent deployment of services.",
+      "keyLines": [
+        "DbSet<Product> Products - Catalog domain",
+        "DbSet<Customer> Customers - Customer domain",
+        "DbSet<Payment> Payments - Payment domain",
+        "DbSet<Order> Orders - Orders domain",
+        "DbSet<StockItem> StockItems - Inventory domain"
+      ],
+      "antipattern": "God DbContext",
+      "next": "See Orders/OrderService.cs for how this coupling enables (and requires) the problematic transaction"
+    },
+    {
+      "stop": 3,
+      "title": "The CreateOrder Saga",
+      "file": "Orders/OrderService.cs",
+      "description": "This is the core business workflow that MUST work differently in microservices. Currently it spans 4 domains in one ACID transaction. In the decomposed version, this becomes a distributed saga with compensation.",
+      "keyLines": [
+        "var product = _catalogService.GetProduct() - Cross-context call #1",
+        "var customer = _customerService.GetCustomer() - Cross-context call #2",
+        "_inventoryService.Reserve() - Cross-context call #3",
+        "_paymentService.Charge() - Cross-context call #4",
+        "await _db.SaveChanges() - ONE commit for ALL changes"
+      ],
+      "migrationNote": "In microservices: each service has its own database, so this workflow becomes CreateOrderSaga with outbox pattern and compensation handlers.",
+      "next": "Check Inventory/InventoryService.cs for a concurrency bug"
+    },
+    {
+      "stop": 4,
+      "title": "Race Condition in Inventory",
+      "file": "Inventory/InventoryService.cs",
+      "description": "The Reserve() method has a classic read-check-then-write race condition. Two concurrent orders for the last item in stock can BOTH succeed (oversell). This bug should be fixed during decomposition.",
+      "buggyCode": [
+        "var stock = await _db.StockItems.FindAsync(productId);",
+        "if (stock.Quantity >= quantity) {",
+        "    stock.Quantity -= quantity; // NOT ATOMIC!",
+        "}"
+      ],
+      "fix": "Add RowVersion for optimistic concurrency, or use raw SQL with WHERE quantity >= @quantity",
+      "next": "See Payments/PaymentService.cs for another quality issue"
+    },
+    {
+      "stop": 5,
+      "title": "String Enums Anti-Pattern",
+      "file": "Payments/Payment.cs",
+      "description": "The Payment.Status property is a bare string instead of an enum. This allows typos ('Sucess' vs 'Success') and prevents compile-time validation.",
+      "antipattern": "public string Status { get; set; } // Should be PaymentStatus enum",
+      "fix": "Create PaymentStatus enum { Pending, Completed, Failed, Refunded }",
+      "next": "Examine Catalog/CatalogService.cs to see a well-isolated service"
+    },
+    {
+      "stop": 6,
+      "title": "Clean Bounded Context: Catalog",
+      "file": "Catalog/CatalogService.cs",
+      "description": "The catalog service is a good example of a cleanly bounded context. It only touches Product and Category entities, has no outbound dependencies, and can be extracted with minimal changes.",
+      "migrationComplexity": "Low (3/10)",
+      "effort": "4-6 hours",
+      "next": "See the Catalog controller for the API surface"
+    },
+    {
+      "stop": 7,
+      "title": "API Layer: Catalog Controller",
+      "file": "Catalog/CatalogController.cs",
+      "description": "Simple REST controller exposing the catalog. In microservices, this becomes the catalog-service's own HTTP interface, called by other services via HTTP client instead of direct method calls.",
+      "routes": [
+        "GET /api/catalog/products - List all products",
+        "GET /api/catalog/products/{id} - Get one product"
+      ],
+      "migrationNote": "In target: OrderService will call this via typed HTTP client instead of injecting CatalogService"
+    },
+    {
+      "stop": 8,
+      "title": "Summary: What Makes This Hard",
+      "description": "The decomposition challenge isn't the code complexity - each service is simple. The challenge is:\n\n1. God DbContext couples everything\n2. PlaceOrder is one ACID transaction across 4 domains\n3. Other services' direct method calls become HTTP calls\n4. Data consistency becomes eventual, not immediate\n5. Testing requires running multiple services",
+      "benefits": "Independent deployment, technology choice, scaling, team ownership",
+      "tradeoffs": "Operational complexity, eventual consistency, distributed tracing needed"
+    }
+  ],
+  "architecturalDecisions": [
+    {
+      "decision": "Why in-memory database?",
+      "rationale": "This is a demo fixture. Real apps would use SQL Server / PostgreSQL.",
+      "file": "Program.cs",
+      "line": "UseInMemoryDatabase"
+    },
+    {
+      "decision": "Why no repository pattern?",
+      "rationale": "Keeping the monolith simple to focus on decomposition mechanics. The target microservices will add repositories.",
+      "impact": "Services directly use DbContext - this coupling is intentional for the demo"
+    },
+    {
+      "decision": "Why is OrderService so complex?",
+      "rationale": "OrderService.PlaceOrder is INTENTIONALLY complex to demonstrate saga decomposition. This is the teaching moment.",
+      "file": "Orders/OrderService.cs"
+    }
+  ]
+}
