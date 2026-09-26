@@ -1,0 +1,195 @@
+# Monolith Decomposition Plan
+
+## Executive Summary
+
+This monolith can be cleanly decomposed into **5 microservices**:
+1. Catalog Service (products, categories)
+2. Customers Service (customer management)
+3. Inventory Service (stock tracking)
+4. Payments Service (payment processing)
+5. Orders Service (order orchestration + saga)
+
+## Service Map
+
+```
+┌─────────────────────────────────────────┐
+│         Orders Service (Saga)           │
+│  Coordinates: CreateOrder workflow      │
+└──────────┬──────────────────────────────┘
+           │
+           ├──► Catalog Service (products)
+           ├──► Customers Service (accounts)
+           ├──► Inventory Service (stock)
+           └──► Payments Service (charges)
+```
+
+## Bounded Context Analysis
+
+### 1. Catalog Service
+- **Domain**: Product catalog management
+- **Entities**: Product, Category, StockItem
+- **Complexity**: Low (3/10)
+- **Dependencies**: None
+- **Database**: CatalogDb (Products, Categories tables)
+- **Move Priority**: 1 (Foundation)
+
+### 2. Customers Service  
+- **Domain**: Customer account management
+- **Entities**: Customer
+- **Complexity**: Low (2/10)
+- **Dependencies**: None
+- **Database**: CustomersDb (Customers table)
+- **Move Priority**: 1 (Foundation)
+
+### 3. Inventory Service
+- **Domain**: Stock level tracking
+- **Entities**: StockItem
+- **Complexity**: Medium (5/10)
+- **Dependencies**: Catalog (product metadata)
+- **Database**: InventoryDb (StockItems table)
+- **Move Priority**: 2
+
+**Issue**: Read-check-then-write race condition
+```csharp
+// Current code has oversell bug:
+var stock = await _db.StockItems.FindAsync(productId);
+if (stock.Quantity >= quantity) {
+    stock.Quantity -= quantity;  // NOT ATOMIC
+}
+```
+**Fix**: Optimistic concurrency with `RowVersion`
+
+### 4. Payments Service
+- **Domain**: Payment processing
+- **Entities**: Payment
+- **Complexity**: Medium (4/10)  
+- **Dependencies**: None
+- **Database**: PaymentsDb (Payments table)
+- **Move Priority**: 3
+
+**Issue**: Payment.Status is bare string (should be enum)
+
+### 5. Orders Service (Saga Coordinator)
+- **Domain**: Order workflow orchestration
+- **Entities**: Order, OrderLine
+- **Complexity**: High (8/10)
+- **Dependencies**: ALL other services
+- **Database**: OrdersDb (Orders, OrderLines tables)
+- **Move Priority**: 5 (Last)
+
+**Saga**: CreateOrder coordinates 4 services
+
+## Migration Order (Strangler Fig)
+
+### Phase 1: Foundation Services
+**Move first** (no upstream dependencies):
+1. Catalog Service
+2. Customers Service
+
+### Phase 2: Dependent Services
+**Move second** (depend on Phase 1):
+3. Inventory Service (needs Catalog)
+4. Payments Service
+
+### Phase 3: Orchestrator
+**Move last** (depends on all):
+5. Orders Service + CreateOrder Saga
+
+## Database Decomposition
+
+### Current: God Context
+```
+ShopDbContext
+├── Products
+├── Categories  
+├── StockItems
+├── Customers
+├── Payments
+├── Orders
+└── OrderLines
+```
+
+### Target: Database-per-Service
+```
+CatalogDb          CustomersDb        InventoryDb
+├── Products       └── Customers      └── StockItems
+└── Categories
+
+PaymentsDb         OrdersDb
+└── Payments       ├── Orders
+                   └── OrderLines
+```
+
+## Cross-Cutting Concerns
+
+### 1. God DbContext Replacement
+**Current**: One `ShopDbContext` owns all entities
+**Target**: 5 dedicated `DbContext` classes
+
+### 2. Transaction Boundaries
+**Current**: One `SaveChanges()` commits all
+**Target**: Saga + Outbox per service
+
+### 3. CreateOrder Saga
+**Current**: ACID transaction
+```csharp
+// All in one transaction:
+var product = _catalogService.GetProduct();
+var customer = _customerService.GetCustomer();
+_inventoryService.Reserve();  
+_paymentService.Charge();
+_db.SaveChanges();  // ONE COMMIT
+```
+
+**Target**: Eventually consistent saga
+```csharp
+// Distributed workflow with compensation:
+saga.Start(CreateOrderSaga)
+    .Then(reserveStock)
+    .Then(chargePayment)
+    .OnFailure(compensate)
+```
+
+## Estimated Effort
+
+| Service   | LOC | Complexity | Effort (hrs) |
+|-----------|-----|------------|--------------|
+| Catalog   |  50 | Low (3/10) |       4-6    |
+| Customers |  40 | Low (2/10) |       4-6    |
+| Inventory |  45 | Med (5/10) |       8-12   |
+| Payments  |  42 | Med (4/10) |       6-8    |
+| Orders    |  80 | High (8/10)|      24-32   |
+| **Total** | 257 | -          |  **46-64**   |
+
+Plus infrastructure: Aspire, gateways, observability (+16-24 hrs)
+
+**Total Project**: 62-88 hours
+
+## Risk Assessment
+
+### High Risk
+- Orders saga (distributed transaction complexity)
+- Inventory race condition (needs fixing during migration)
+
+### Medium Risk  
+- Database schema migration
+- Data consistency during strangler fig
+
+### Low Risk
+- Catalog, Customers, Payments (clean bounded contexts)
+
+## Success Metrics
+
+✅ **Must Have**:
+- Each service compiles independently
+- All tests green
+- Database-per-service enforced
+- Saga compensation working
+
+✅ **Nice to Have**:
+- Observability (Jaeger tracing)
+- Load testing proves saga reliability
+- Documentation for team
+
+## Generated by CogniDev + Jev Analysis
+Analysis completed: 2026-09-26
