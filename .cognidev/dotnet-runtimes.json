@@ -1,0 +1,41 @@
+{
+  "can_build_after": "the target has not been chosen yet; the newest SDK on this machine is 10",
+  "can_build_before": "the monolith targets up to .NET 10 and SDK 10 can build it",
+  "framework_msbuild": null,
+  "monolith": {
+    "highest_major": 10,
+    "pre_sdk_projects": [],
+    "projects": 1,
+    "target_frameworks": [
+      "net10.0"
+    ],
+    "unplaceable": []
+  },
+  "runtime_majors": [
+    9,
+    10
+  ],
+  "sdks": [
+    {
+      "major": 10,
+      "origin": "user-local",
+      "path": "/Users/rajasekharkarawalla/.cognidev/dotnet/sdk",
+      "version": "10.0.301"
+    },
+    {
+      "major": 10,
+      "origin": "user-local",
+      "path": "/Users/rajasekharkarawalla/.cognidev/dotnet/sdk",
+      "version": "10.0.302"
+    },
+    {
+      "major": 9,
+      "origin": "host",
+      "path": "/usr/local/share/dotnet/sdk",
+      "version": "9.0.305"
+    }
+  ],
+  "target_major": null,
+  "tests_runnable_note": null,
+  "tool": "scan-dotnet-runtimes"
+}

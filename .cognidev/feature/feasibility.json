@@ -1,0 +1,15 @@
+{
+  "arch": "osx-arm64",
+  "counts": {
+    "external": 0,
+    "requirements": 0,
+    "test_projects": 0,
+    "unavailable": 0
+  },
+  "not_determinable_here": [],
+  "requirements": [],
+  "test_projects": [],
+  "tool": "dotnet-feasibility",
+  "unavailable": [],
+  "verdict": "nothing beyond the project's own code was found to be required"
+}
